@@ -16,10 +16,19 @@ public class Arena implements Colorable{
     snakes = createSnakes();
   }
 
-  public void update(int FPS) {
-    updateSnakes(FPS);
+  public void update(double time) {
+    updateSnakes(time);
     changeColor();
   }
+
+  public void updateSnakes(double time) {
+    Pair v;
+    for (Snake s: snakes){
+      v = s.head.velocity;
+      s.update(v, time);
+    }
+  }
+
 
   @Override
   public void changeColor() {
@@ -75,12 +84,6 @@ public class Arena implements Colorable{
   public void drawSnakes(Graphics g) {
     for (Snake s: snakes){
       s.drawSnake(g);
-    }
-  }
-
-  public void updateSnakes(int FPS) {
-    for (Snake s: snakes){
-      s.update(((double)1/FPS));
     }
   }
 
