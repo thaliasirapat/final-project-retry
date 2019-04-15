@@ -5,34 +5,33 @@ import java.lang.*;
 
 
 public class Snake implements Colorable {
-  public int length = 2;
+  public int length = 3;
   private int inedibleCount = 0;
   public ArrayList<Segment> body;
   private Color color = Color.GREEN;
   public int player; // we should have player 1 and 2 so the snake responds to different keys
   public Arena arena; // i think we need to have this so that we can use arena as an argument
   private Snake friend;
-  public Pair positionOfChange = new Pair(0,0);
+  public Pair newVelocity;
 
   public Snake(int player, Arena arena) {
     this.player = player;
     this.arena = arena;
-    Pair velocity = new Pair(0, -40);
-    Segment s1;
-    Pair position = new Pair(341,384);
-    if (player == 2) {
+    Pair newVelocity = new Pair(0, -40);
+    Pair position;
+    if (player == 1) {
+      position = new Pair(341,384);
+    }
+    else {
       position = new Pair(682,384);
     }
-    s1 = new Segment(position, velocity);
-    body = new ArrayList<Segment>();
+    body = new ArrayList<Segment>(3);
+    Segment s1 = new Segment(position, newVelocity);
     body.add(s1);
-    Segment s2 = new Segment(s1.position.add(new Pair(0,20)), velocity);
+    Segment s2 = new Segment(s1.position.add(new Pair(0,20)), newVelocity);
     body.add(s2);
-    Segment s3 = new Segment(s2.position.add(new Pair(0,20)), velocity);
+    Segment s3 = new Segment(s2.position.add(new Pair(0,20)), newVelocity);
     body.add(s3);
-    for (Segment s: body) {
-      s.velocity = velocity;
-    }
   }
 
   public void drawSnake(Graphics g){
@@ -42,67 +41,57 @@ public class Snake implements Colorable {
      }
   }
 
-  public void move(double time) {
-    for (int i=1; i<body.size(); ++i) {
-      if (!positionOfChange.equalsTo(new Pair(0,0)) && body.get(i).position.equalsTo(positionOfChange)) {
-        body.get(i).velocity = body.get(0).velocity;
-      }
+  public void update() {
+    for (int i = body.size() - 1; i > 0 ; --i){
+      body.set(i, body.get(i-1));
     }
-    for (Segment s: body) {
-      s.position = s.position.add(s.velocity.times(time));
-    }
+    Pair newPosition = body.get(1).position.add(newVelocity);
+    body.set(0, new Segment (newPosition, newVelocity));
+
+
   }
 
-  public void changeVelocity(char c) {
+  public void changeNewVelocity(char c) {
     if (player == 1) {
       if (isMovingUp() || isMovingDown()) {
         if (c == 'a') {
-          arena.snakes.get(0).body.get(0).velocity = new Pair(-40, 0);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(-40, 0);
         }
         if (c == 'd') {
-          arena.snakes.get(0).body.get(0).velocity = new Pair(40, 0);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(40, 0);
+
         }
       }
       if (isMovingRight() || isMovingLeft()) {
         if (c == 'w') {
-          arena.snakes.get(0).body.get(0).velocity = new Pair(0, -40);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(0, -40);
         }
         if (c == 's') {
-          arena.snakes.get(0).body.get(0).velocity = new Pair(0, 40);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(0, 40);
         }
       }
     }
     if (player == 2) {
       if (isMovingUp() || isMovingDown()) {
         if (c == 'j') {
-          arena.snakes.get(1).body.get(0).velocity = new Pair(-40, 0);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(-40, 0);
         }
         if (c == 'l') {
-          arena.snakes.get(1).body.get(0).velocity = new Pair(40, 0);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(40, 0);
         }
       }
       if (isMovingRight() || isMovingLeft()) {
         if (c == 'i') {
-          arena.snakes.get(1).body.get(0).velocity = new Pair(0, -40);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(0, -40);
         }
         if (c == 'k') {
-          arena.snakes.get(1).body.get(0).velocity = new Pair(0, 40);
-          positionOfChange = arena.snakes.get(0).body.get(0).position;
+          newVelocity = new Pair(0, 40);
         }
       }
     }
   }
 
-  public void update(double time) {
-    this.move(time);
-  }
+
 
   public boolean isMovingUp() {
     Pair upVelocity = new Pair(0, -40);

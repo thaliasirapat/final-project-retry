@@ -26,8 +26,8 @@ public class HISS extends JPanel implements KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
     char c = e.getKeyChar();
-    arena.snakes.get(0).changeVelocity(c);
-    arena.snakes.get(1).changeVelocity(c);
+    arena.snakes.get(0).changeNewVelocity(c);
+    arena.snakes.get(1).changeNewVelocity(c);
   }
 
   @Override
@@ -48,7 +48,7 @@ public class HISS extends JPanel implements KeyListener {
   class Runner implements Runnable {
     public void run() {
       while (true) {
-        arena.update(FPS);
+        arena.update();
         repaint();
         try{
     		    Thread.sleep(1000/FPS);
