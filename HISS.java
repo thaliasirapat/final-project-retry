@@ -11,7 +11,7 @@ import java.awt.Dimension;
 
 public class HISS extends JPanel implements KeyListener {
 
-  public static final int FPS = 60;
+  public static final int FPS = 20;
   public Arena arena;
   public char c;
 
@@ -39,7 +39,7 @@ public class HISS extends JPanel implements KeyListener {
   }
 
   public int getPlayer(char c){
-    if ( c == 'w' || c == 's' || c == 'a' || c == 's'){
+    if ( c == 'w' || c == 's' || c == 'a' || c == 'd'){
       return 1;
     }
     else if (c == 'i' || c == 'k' ||c == 'j' ||c == 'l' ){
@@ -146,6 +146,10 @@ class Pair{
       return true;
     }
     return false;
+  }
+
+  public String toString() {
+    return "x: " + x +  " " + "y: " + y;
   }
 }
 

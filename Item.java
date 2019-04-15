@@ -6,8 +6,8 @@ import java.awt.Graphics;
 public class Item {
 
   public Pair position;
-  public final int width = 20;
-  public final int height = 20;
+  public final int width = 10;
+  public final int height = 10;
   public boolean edible;
 
   public Item(boolean edible) {
@@ -25,7 +25,7 @@ public class Item {
     }
     g.fillRect((int)position.x, (int)position.y, this.width, this.height);
   }
-  
+
   public void eraseItem() {
     Random rand = new Random();
     this.position = new Pair((double)rand.nextInt(Arena.width - width), (double)rand.nextInt(Arena.height - height));

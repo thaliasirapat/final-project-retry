@@ -19,7 +19,6 @@ public class Arena implements Colorable{
   public void update(double time) {
     updateSnakes(time);
     changeColor();
-    updateSnakes();
   }
 
   public void updateSnakes(double time) {
