@@ -77,6 +77,7 @@ public class Snake implements Colorable {
     Item item = this.eatenItem();
     if (item != null){
       this.evolve(item, velocity);
+      item.remove();
     }
     if (this.inedibleCount >= 3){
       System.out.println("Game over!");
