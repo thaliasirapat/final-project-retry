@@ -148,8 +148,11 @@ class Pair{
     return false;
   }
 
-  public String toString() {
-    return "x: " + x +  " " + "y: " + y;
+  public boolean inRange(Pair a, double range){
+    if ((this.x >= a.x && this.x <= a.x + range) && (this.y >= a.y && this.y <= a.y + range)){
+      return true;
+    }
+    return false;
   }
 }
 

@@ -12,7 +12,7 @@ public class Snake implements Colorable {
   public int player;
   public Arena arena;
   public int distanceBetweenSegments = 10;
-  public int velocityComponent = 200;
+  public int velocityComponent = 50; // for debugging let's make it slower for now
 
   public Snake(int player, Arena arena) {
     this.player = player;
@@ -68,16 +68,16 @@ public class Snake implements Colorable {
       System.out.println("Eat self");
       System.exit(0);
     }
-    if (hitWall()){
+    /* if (hitWall()){
       System.out.println("Game Over!");
       System.out.println("Your score is: " + arena.score);
       System.out.println("Hit wall");
       System.exit(0);
-    }
+    } */
     Item item = this.eatenItem();
     if (item != null){
       this.evolve(item, velocity);
-      item.remove();
+      item.eraseItem();
     }
     if (this.inedibleCount >= 3){
       System.out.println("Game over!");
@@ -112,7 +112,7 @@ public class Snake implements Colorable {
    } // end of eatFriend
 
 
-   // !!!!!!! !!!!!!!!!FIX THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   // !!!!!!! !!!!!!!!! FIX THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    public boolean hitWall(){
      double x = this.head.position.x;
      double y = this.head.position.y;
@@ -136,7 +136,7 @@ public class Snake implements Colorable {
         head.velocity = new Pair(velocityComponent, 0);
       }
     }
-    if (isMovingRight() || isMovingLeft()) {
+   if (isMovingRight() || isMovingLeft()) {
       if (c == 'w' || c == 'i') {
         head.velocity = new Pair(0, -velocityComponent);
       }
@@ -148,8 +148,10 @@ public class Snake implements Colorable {
 
 
   public Item eatenItem(){
+    Pair position;
     for (Item i: arena.items) {
-      if(i.position.equalsTo(head.position))
+      position = i.position;
+      if(head.position.inRange(position, 10))
       return i;
     }
     return null;
