@@ -96,6 +96,7 @@ public class HISS extends JPanel implements KeyListener {
     arena.drawItems(g);
     arena.drawSnakes(g);
     arena.drawScore(g);
+    arena.drawInedibleCount(g);
   }
 }
 
@@ -149,10 +150,14 @@ class Pair{
   }
 
   public boolean inRange(Pair a, double range){
-    if ((this.x >= a.x && this.x <= a.x + range) && (this.y >= a.y && this.y <= a.y + range)){
+    if ((this.x >= a.x - range && this.x <= a.x + range) && (this.y >= a.y - range && this.y <= a.y + range)){
       return true;
     }
     return false;
+  }
+
+  public String toString(){
+    return "x: " + x + "y: " + y;
   }
 }
 

@@ -5,14 +5,14 @@ import java.lang.*;
 
 
 public class Snake implements Colorable {
-  private int inedibleCount = 0;
+  public int inedibleCount = 0;
   public ArrayList<Segment> body;
   public Segment head;
-  private Color color = Color.GREEN;
+  private Color color = Color.BLACK;
   public int player;
   public Arena arena;
-  public int distanceBetweenSegments = 10;
-  public int velocityComponent = 50; // for debugging let's make it slower for now
+  public int distanceBetweenSegments = 0;
+  public int velocityComponent = 200; // for debugging let's make it slower for now
 
   public Snake(int player, Arena arena) {
     this.player = player;
@@ -20,11 +20,11 @@ public class Snake implements Colorable {
     Pair position;
     Pair velocity;
     if (player == 1) {
-      position = new Pair(341,Arena.height);
+      position = new Pair(341,Arena.height+1);
       velocity = new Pair(0, -velocityComponent);
     }
     else {
-      position = new Pair(682, Arena.height);
+      position = new Pair(682, Arena.height+1);
       velocity = new Pair (0, -velocityComponent);
     }
 
@@ -42,7 +42,7 @@ public class Snake implements Colorable {
 
 
   public void drawSnake(Graphics g){
-    g.setColor(Color.GREEN);
+    g.setColor(color);
     g.fillRect((int)head.position.x, (int)head.position.y, head.width, head.height);
     for (Segment s: body){
       g.fillRect((int)s.position.x, (int)s.position.y, s.width, s.height);
@@ -62,27 +62,33 @@ public class Snake implements Colorable {
   public void update(Pair velocity, double time){
     this.move(velocity, time);
 
-    if (eatSelf() || eatFriend()){
+    if (eatSelf()){
       System.out.println("Game Over!");
       System.out.println("Your score is: " + arena.score);
       System.out.println("Eat self");
       System.exit(0);
     }
-    /* if (hitWall()){
+    if (eatFriend()){
+      System.out.println("Game Over!");
+      System.out.println("Your score is: " + arena.score);
+      System.out.println("Eat friend");
+      System.exit(0);
+    }
+    if (hitWall()){
       System.out.println("Game Over!");
       System.out.println("Your score is: " + arena.score);
       System.out.println("Hit wall");
       System.exit(0);
-    } */
+    }
     Item item = this.eatenItem();
     if (item != null){
       this.evolve(item, velocity);
       item.eraseItem();
     }
-    if (this.inedibleCount >= 3){
+    if (this.inedibleCount == 5){
       System.out.println("Game over!");
       System.out.println("Your score is: " + arena.score);
-      System.out.println("Inedible food");
+      System.out.println("Ate 5 inedible foods");
       System.exit(0);
     }
    } // end of update
@@ -105,22 +111,20 @@ public class Snake implements Colorable {
      }
 
      for (Segment s: friend.body){
-       if (this.head.position.equalsTo(s.position))
+       if (this.head.position.inRange(s.position, 1))
         return true;
      }
      return false;
    } // end of eatFriend
 
-
-   // !!!!!!! !!!!!!!!! FIX THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    public boolean hitWall(){
      double x = this.head.position.x;
      double y = this.head.position.y;
      boolean hitWall = false;
-     if (x > arena. width - 20 || x < 0 ){
+     if (x > arena. width || x < 0 ){
        hitWall = true;
      }
-     else if ( y > arena.height - 20 || y < 0){
+     else if ( y > arena.height || y < 0){
        hitWall = true;
      }
      return hitWall;
@@ -148,11 +152,10 @@ public class Snake implements Colorable {
 
 
   public Item eatenItem(){
-    Pair position;
-    for (Item i: arena.items) {
-      position = i.position;
-      if(head.position.inRange(position, 10))
-      return i;
+    for (Item i: arena.items){
+      if(head.position.inRange(i.position, 10)){
+        return i;
+      }
     }
     return null;
   } // end of hasEatenItem
@@ -162,7 +165,7 @@ public class Snake implements Colorable {
   public void evolve(Item item, Pair velocity){
     if(item.edible){
       arena.score++;
-      for (int i=0; i<10; ++i) {
+      for (int i=0; i<1; ++i) {
         Segment s = new Segment(body.get(i).position.add(new Pair(0, distanceBetweenSegments)), velocity);
         body.add(s);
       }
@@ -208,14 +211,11 @@ public class Snake implements Colorable {
 
   @Override
     public void changeColor() {
-      if (arena.score > 5 && arena.score <= 10) {
-        color = Color.PINK;
-      }
-      if (arena.score > 10 && arena.score <= 15) {
-        color = Color.BLUE;
-      }
-      if (arena.score > 15 && arena.score <= 20) {
+      if (arena.score > 50 && arena.score <= 100) {
         color = Color.MAGENTA;
+      }
+      if (arena.score > 100) {
+        color = Color.BLUE;
       }
     }
 
