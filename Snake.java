@@ -11,7 +11,6 @@ public class Snake implements Colorable {
   private Color color = Color.BLACK;
   public int player;
   public Arena arena;
-  public int distanceBetweenSegments = 0;
   public int velocityComponent = 200; // for debugging let's make it slower for now
 
   public Snake(int player, Arena arena) {
@@ -31,10 +30,10 @@ public class Snake implements Colorable {
     // Creating head and body of snake
     head = new Segment(position, velocity);
     body = new ArrayList<Segment>();
-    Segment s1 = new Segment(position.add(new Pair(0, distanceBetweenSegments)), velocity);
+    Segment s1 = new Segment(position, velocity);
     body.add(s1);
     for (int i=0; i<8; ++i) {
-      Segment s = new Segment(body.get(i).position.add(new Pair(0, distanceBetweenSegments)), velocity);
+      Segment s = new Segment(position, velocity);
       body.add(s);
     }
   } // end of Snake constructor
@@ -166,7 +165,7 @@ public class Snake implements Colorable {
     if(item.edible){
       arena.score++;
       for (int i=0; i<1; ++i) {
-        Segment s = new Segment(body.get(i).position.add(new Pair(0, distanceBetweenSegments)), velocity);
+        Segment s = new Segment(body.get(i).position, velocity);
         body.add(s);
       }
     }
