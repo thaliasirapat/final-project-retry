@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Arena implements Colorable{
   public static final int width = 1024;
-  public static final int height = 750;
+  public static final int height = 650;
   public static Color color = Color.WHITE;
   public static int score = 0;
   public ArrayList<Item> items;
