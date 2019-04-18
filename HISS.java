@@ -14,10 +14,15 @@ public class HISS extends JPanel implements KeyListener {
   public static final int FPS = 20;
   public Arena arena;
   public char c;
+  public Menu menu = new Menu();
+  public static State state = State.menu;
 
   public HISS (){
     arena = new Arena();
     this.setPreferredSize(new Dimension(arena.width, arena.height));
+    if (state == State.menu) {
+      addMouseListener(new MouseInput());
+    }
     addKeyListener(this);
     Thread mainThread = new Thread(new Runner());
     mainThread.start();
@@ -26,16 +31,17 @@ public class HISS extends JPanel implements KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
     char c = e.getKeyChar();
-    int x = getPlayer(c);
-    Snake snake;
-
-    if ( x == 1) {
-      snake = arena.snakes.get(0);
+    if (state == State.runGame) {
+      int x = getPlayer(c);
+      Snake snake;
+      if ( x == 1) {
+        snake = arena.snakes.get(0);
+      }
+      else {
+        snake = arena.snakes.get(1);
+      }
+      snake.changeVelocity(c);
     }
-    else {
-      snake = arena.snakes.get(1);
-    }
-    snake.changeVelocity(c);
   }
 
   public int getPlayer(char c){
@@ -68,19 +74,21 @@ public class HISS extends JPanel implements KeyListener {
   class Runner implements Runnable {
     public void run() {
       while (true) {
-        arena.update((double)1/FPS);
-        repaint();
+        if (state == State.runGame) {
+          arena.update((double)1/FPS);
+          repaint();
+        }
         try{
-    		    Thread.sleep(1000/FPS);
-    		}
-    		catch(InterruptedException e){
+          Thread.sleep(1000/FPS);
+        }
+        catch(InterruptedException e){
         }
       }
     }
   }
 
   public static void main(String[] args) {
-    JFrame frame = new JFrame("Two Player Snake!");
+    JFrame frame = new JFrame("HISS: Two Player Snake!");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setContentPane(new HISS());
     frame.pack();
@@ -90,13 +98,17 @@ public class HISS extends JPanel implements KeyListener {
   @Override
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-
-    g.setColor(arena.color);
-    g.fillRect(0, 0, arena.width, arena.height);
-    arena.drawItems(g);
-    arena.drawSnakes(g);
-    arena.drawScore(g);
-    arena.drawInedibleCount(g);
+    if (state == State.menu) {
+      menu.drawMenu(g);
+    }
+    else if (state == State.runGame) {
+      g.setColor(arena.color);
+      g.fillRect(0, 0, arena.width, arena.height);
+      arena.drawItems(g);
+      arena.drawSnakes(g);
+      arena.drawScore(g);
+      arena.drawInedibleCount(g);
+    }
   }
 }
 
