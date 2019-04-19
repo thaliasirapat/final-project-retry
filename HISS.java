@@ -16,6 +16,8 @@ public class HISS extends JPanel {
   public MenuDisplay menuDisplay = new MenuDisplay();
   public GameOverDisplay gameOverDisplay = new GameOverDisplay();
   public RunGameDisplay runGameDisplay = new RunGameDisplay();
+  public PauseGameDisplay pauseGameDisplay = new PauseGameDisplay();
+  public HelpDisplay helpDisplay = new HelpDisplay();
 
   public HISS (){
     this.setPreferredSize(new Dimension(Arena.width, Arena.height));
@@ -36,8 +38,8 @@ public class HISS extends JPanel {
       while (true) {
         if (state == State.runGame) {
           arena.update((double)1/FPS);
-          repaint();
         }
+        repaint();
         try{
           Thread.sleep(1000/FPS);
         }
@@ -61,10 +63,16 @@ public class HISS extends JPanel {
     if (state == State.menu) {
       menuDisplay.drawMenu(g);
     }
-    else if (state == State.runGame) {
+    if (state == State.help) {
+      helpDisplay.drawHelp(g);
+    }
+    if (state == State.runGame) {
       runGameDisplay.drawRunGame(g);
     }
-    else if (state == State.gameOver) {
+    if (state == State.pauseGame) {
+      pauseGameDisplay.drawPauseGame(g);
+    }
+    if (state == State.gameOver) {
       gameOverDisplay.drawGameOver(g);
     }
   }

@@ -15,7 +15,12 @@ public class KeyboardInput implements KeyListener {
         snake = HISS.arena.snakes.get(1);
       }
       snake.changeVelocity(c);
+
+      if (c=='p') {
+        HISS.state = State.pauseGame;
+      }
     }
+
   }
 
   public int getPlayer(char c){

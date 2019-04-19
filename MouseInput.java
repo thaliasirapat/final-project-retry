@@ -13,19 +13,56 @@ public class MouseInput implements MouseListener {
         if (my >= 300 && my <= 400) {
           //Pressed play button
           HISS.state = State.runGame;
+          HISS.arena = new Arena();
+          Arena.score = 0;
+          Arena.color = Color.WHITE;
+          Snake.color = Color.BLACK;
+        }
+      }
+      //help button
+      if (mx >= 420 && mx <= 620) {
+        if (my >= 500 && my <= 600) {
+          //Pressed help button
+          HISS.state = State.help;
         }
       }
     }
 
-    if (HISS.state == State.gameOver) {
-      //replay button
+    else if (HISS.state == State.help) {
+      //back button
+      if (mx >= 420 && mx <= 620) {
+        if (my >= 500 && my <= 600) {
+          HISS.state = State.menu;
+        }
+      }
+    }
+
+    else if (HISS.state == State.pauseGame) {
+      //resume button
       if (mx >= 420 && mx <= 620) {
         if (my >= 400 && my <= 500) {
+          //Pressed resume button
+          HISS.state = State.runGame;
+        }
+      }
+    }
+
+    else if (HISS.state == State.gameOver) {
+      //replay button
+      if (mx >= 300 && mx <= 500) {
+        if (my >= 500 && my <= 600) {
           //Pressed replay button
           HISS.state = State.runGame;
           HISS.arena = new Arena();
           Arena.score = 0;
           Arena.color = Color.WHITE;
+          Snake.color = Color.BLACK;
+        }
+      }
+      //menu button
+      if (mx >= 550 && mx <= 750) {
+        if (my >= 500 && my <= 600) {
+          HISS.state = State.menu;
         }
       }
     }

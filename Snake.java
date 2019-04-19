@@ -8,7 +8,7 @@ public class Snake implements Colorable {
   public int inedibleCount = 0;
   public ArrayList<Segment> body;
   public Segment head;
-  private Color color = Color.BLACK;
+  public static Color color = Color.BLACK;
   public int player;
   public Arena arena;
   public int velocityComponent = 200; // for debugging let's make it slower for now

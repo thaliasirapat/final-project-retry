@@ -11,11 +11,11 @@ public class MenuDisplay {
   public void drawMenu(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
 
-    g.setColor(Color.WHITE);
+    g.setColor(Arena.color);
     g.fillRect(0, 0, Arena.width, Arena.height);
     Font titleFont = new Font("monospaced", Font.BOLD, 50);
     g.setFont(titleFont);
-    g.setColor(Color.BLACK);
+    g.setColor(Snake.color);
     g.drawString("HISS: a two player snake game", 80, 200);
 
     Font buttonFont = new Font("monospaced", Font.BOLD, 20);

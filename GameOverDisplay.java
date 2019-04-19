@@ -5,21 +5,23 @@ import java.awt.Rectangle;
 import java.awt.Graphics2D;
 
 public class GameOverDisplay {
-  public Rectangle replayButton = new Rectangle(420, 400, 200, 100);
+  public Rectangle replayButton = new Rectangle(300, 500, 200, 100);
+  public Rectangle menuButton = new Rectangle(550, 500, 200, 100);
 
   public void drawGameOver(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
 
-    g.setColor(Color.WHITE);
+    g.setColor(Arena.color);
     g.fillRect(0, 0, Arena.width, Arena.height);
     Font gameOverFont = new Font("monospaced", Font.BOLD, 50);
     g.setFont(gameOverFont);
-    g.setColor(Color.BLACK);
+    g.setColor(Snake.color);
     g.drawString("Game Over!", 380, 200);
+    g.drawString("Score: " + Arena.score, 400, 330);
 
-    Font buttonFont = new Font("monospaced", Font.BOLD, 20);
     g2d.draw(replayButton);
     g.drawString("Replay", replayButton.x + 10, replayButton.y + 65);
-    g.drawString("Score: " + Arena.score, 405, 330);
+    g2d.draw(menuButton);
+    g.drawString("Menu", menuButton.x + 40, replayButton.y + 65);
   }
 }
