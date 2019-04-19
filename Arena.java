@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 public class Arena implements Colorable{
-  public static final int width = 1024;
+  public static final int width = 1025;
   public static final int height = 650;
   public static Color color = Color.WHITE;
   public static int score = 0;
@@ -80,9 +80,9 @@ public class Arena implements Colorable{
   }
 
   public void drawInedibleCount(Graphics g) {
-    String s1 = "Snake 1 Inedible Count: " + snakes.get(0).inedibleCount;
+    String s1 = "Snake 1 Rocks Eaten: " + snakes.get(0).inedibleCount;
     g.drawString(s1, 850, 35);
-    String s2 = "Snake 2 Inedible Count: " + snakes.get(1).inedibleCount;
+    String s2 = "Snake 2 Rocks Eaten: " + snakes.get(1).inedibleCount;
     g.drawString(s2, 850, 55);
   }
 

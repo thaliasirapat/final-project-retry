@@ -62,22 +62,13 @@ public class Snake implements Colorable {
     this.move(velocity, time);
 
     if (eatSelf()){
-      System.out.println("Game Over!");
-      System.out.println("Your score is: " + arena.score);
-      System.out.println("Eat self");
-      System.exit(0);
+      HISS.state = State.gameOver;
     }
     if (eatFriend()){
-      System.out.println("Game Over!");
-      System.out.println("Your score is: " + arena.score);
-      System.out.println("Eat friend");
-      System.exit(0);
+      HISS.state = State.gameOver;
     }
     if (hitWall()){
-      System.out.println("Game Over!");
-      System.out.println("Your score is: " + arena.score);
-      System.out.println("Hit wall");
-      System.exit(0);
+      HISS.state = State.gameOver;
     }
     Item item = this.eatenItem();
     if (item != null){
@@ -85,10 +76,7 @@ public class Snake implements Colorable {
       item.eraseItem();
     }
     if (this.inedibleCount == 5){
-      System.out.println("Game over!");
-      System.out.println("Your score is: " + arena.score);
-      System.out.println("Ate 5 inedible foods");
-      System.exit(0);
+      HISS.state = State.gameOver;
     }
    } // end of update
 

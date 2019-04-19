@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Graphics2D;
 
-public class Menu {
+public class MenuDisplay {
   public Rectangle playButton = new Rectangle(420, 300, 200, 100);
   public Rectangle helpButton = new Rectangle(420, 500, 200, 100);
 
