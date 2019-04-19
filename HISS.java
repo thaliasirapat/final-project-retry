@@ -1,6 +1,4 @@
 import java.util.Random;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,61 +7,23 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.Dimension;
 
-public class HISS extends JPanel implements KeyListener {
+public class HISS extends JPanel {
 
   public static final int FPS = 20;
-  public Arena arena;
+  public static Arena arena;
   public char c;
-  public Menu menu = new Menu();
   public static State state = State.menu;
+  public MenuDisplay menuDisplay = new MenuDisplay();
+  public GameOverDisplay gameOverDisplay = new GameOverDisplay();
+  public RunGameDisplay runGameDisplay = new RunGameDisplay();
 
   public HISS (){
+    this.setPreferredSize(new Dimension(Arena.width, Arena.height));
+    addMouseListener(new MouseInput());
+    addKeyListener(new KeyboardInput());
     arena = new Arena();
-    this.setPreferredSize(new Dimension(arena.width, arena.height));
-    if (state == State.menu) {
-      addMouseListener(new MouseInput());
-    }
-    addKeyListener(this);
     Thread mainThread = new Thread(new Runner());
     mainThread.start();
-  }
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-    char c = e.getKeyChar();
-    if (state == State.runGame) {
-      int x = getPlayer(c);
-      Snake snake;
-      if ( x == 1) {
-        snake = arena.snakes.get(0);
-      }
-      else {
-        snake = arena.snakes.get(1);
-      }
-      snake.changeVelocity(c);
-    }
-  }
-
-  public int getPlayer(char c){
-    if ( c == 'w' || c == 's' || c == 'a' || c == 'd'){
-      return 1;
-    }
-    else if (c == 'i' || c == 'k' ||c == 'j' ||c == 'l' ){
-      return 2;
-    }
-    else{
-      return 3;
-    }
-  }
-
-  @Override
-  public void keyReleased(KeyEvent e) {
-     char c = e.getKeyChar();
-   }
-
-  @Override
-  public void keyTyped(KeyEvent e) {
-    char c = e.getKeyChar();
   }
 
   public void addNotify() {
@@ -99,15 +59,13 @@ public class HISS extends JPanel implements KeyListener {
   public void paintComponent(Graphics g){
     super.paintComponent(g);
     if (state == State.menu) {
-      menu.drawMenu(g);
+      menuDisplay.drawMenu(g);
     }
     else if (state == State.runGame) {
-      g.setColor(arena.color);
-      g.fillRect(0, 0, arena.width, arena.height);
-      arena.drawItems(g);
-      arena.drawSnakes(g);
-      arena.drawScore(g);
-      arena.drawInedibleCount(g);
+      runGameDisplay.drawRunGame(g);
+    }
+    else if (state == State.gameOver) {
+      gameOverDisplay.drawGameOver(g);
     }
   }
 }

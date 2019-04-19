@@ -1,3 +1,3 @@
 public enum State {
-  menu, runGame, pause, endGame;
+  menu, runGame, pause, gameOver;
 }
