@@ -32,7 +32,7 @@ public class HISS extends JPanel {
       super.addNotify();
       requestFocus();
   }
-
+  
   class Runner implements Runnable {
     public void run() {
       while (true) {
