@@ -13,12 +13,12 @@ public class PauseGameDisplay{
 
     g.setColor(Arena.color);
     g.fillRect(0, 0, Arena.width, Arena.height);
-    Font pauseFont = new Font("monospaced", Font.BOLD, 50);
+    Font pauseFont = new Font("arial", Font.BOLD, 50);
     g.setFont(pauseFont);
     g.setColor(Snake.color);
     g.drawString("Game Paused", 350, 200);
 
-    Font buttonFont = new Font("monospaced", Font.BOLD, 20);
+    Font buttonFont = new Font("arial", Font.BOLD, 20);
     g2d.draw(resumeButton);
     g.drawString("Resume", resumeButton.x + 10, resumeButton.y + 65);
     g.drawString("Score: " + Arena.score, 400, 330);

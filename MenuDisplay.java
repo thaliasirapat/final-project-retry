@@ -13,15 +13,15 @@ public class MenuDisplay {
 
     g.setColor(Arena.color);
     g.fillRect(0, 0, Arena.width, Arena.height);
-    Font titleFont = new Font("monospaced", Font.BOLD, 50);
+    Font titleFont = new Font("arial", Font.BOLD, 50);
     g.setFont(titleFont);
     g.setColor(Snake.color);
-    g.drawString("HISS: a two player snake game", 80, 200);
+    g.drawString("HISS: Two Player Snake!", 225, 200);
 
-    Font buttonFont = new Font("monospaced", Font.BOLD, 20);
+    Font buttonFont = new Font("arial", Font.BOLD, 20);
     g2d.draw(playButton);
-    g.drawString("Play", playButton.x + 35, playButton.y + 65);
+    g.drawString("Play", playButton.x + 45, playButton.y + 65);
     g2d.draw(helpButton);
-    g.drawString("Help", helpButton.x + 35, helpButton.y + 65);
+    g.drawString("Help", helpButton.x + 45, helpButton.y + 65);
   }
 }
