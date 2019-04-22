@@ -1,3 +1,4 @@
+// imports ==============================================================
 import java.util.Random;
 import java.util.ArrayList;
 import java.awt.Color;
@@ -7,17 +8,24 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.Dimension;
 
+//  ===========================================================================
+//  ===========================================================================
+
 public class HISS extends JPanel {
 
   public static final int FPS = 20;
   public static Arena arena;
   public char c;
+
+  // the following variables hold different 'states' of the game so that the correct
+  // draw method can be called accordingly
   public static State state = State.menu;
   public MenuDisplay menuDisplay = new MenuDisplay();
   public GameOverDisplay gameOverDisplay = new GameOverDisplay();
   public RunGameDisplay runGameDisplay = new RunGameDisplay();
   public PauseGameDisplay pauseGameDisplay = new PauseGameDisplay();
   public HelpDisplay helpDisplay = new HelpDisplay();
+  //  ==========================================================================
 
   public HISS (){
     this.setPreferredSize(new Dimension(Arena.width, Arena.height));
@@ -32,7 +40,7 @@ public class HISS extends JPanel {
       super.addNotify();
       requestFocus();
   }
-  
+
   class Runner implements Runnable {
     public void run() {
       while (true) {
@@ -75,67 +83,6 @@ public class HISS extends JPanel {
     if (state == State.gameOver) {
       gameOverDisplay.drawGameOver(g);
     }
-  }
-}
-
-class Pair{
-  public double x;
-  public double y;
-
-  public Pair(double initX, double initY){
-    x = initX;
-    y = initY;
-  }
-
-  public Pair add(Pair toAdd){
-    return new Pair(x + toAdd.x, y + toAdd.y);
-  }
-
-  public Pair divide(double denom){
-    return new Pair(x / denom, y / denom);
-  }
-
-  public Pair times(double val){
-    return new Pair(x * val, y * val);
-  }
-
-  public void flipX(){
-    x = -x;
-  }
-
-  public void flipY(){
-    y = -y;
-  }
-  public boolean equalsTo(Pair p) {
-    if (p.x == this.x && p.y == this.y){
-      return true;
-    }
-    return false;
-  }
-
-  public boolean isPositiveX() {
-    if (this.x > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  public boolean isPositiveY() {
-    if (this.y > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  public boolean inRange(Pair a, double range){
-    if ((this.x >= a.x - range && this.x <= a.x + range) && (this.y >= a.y - range && this.y <= a.y + range)){
-      return true;
-    }
-    return false;
-  }
-
-  public String toString(){
-    return "x: " + x + "y: " + y;
   }
 }
 
