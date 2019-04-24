@@ -10,6 +10,9 @@ import java.awt.Dimension;
 
 //  ===========================================================================
 //  ===========================================================================
+// class HISS is the main class of the program and the entry point into the game
+// HISS creates an instance of Arena, implements multi-threading, and calls the
+// appropriate draw menus depending on the current state of the game
 
 public class HISS extends JPanel {
 
@@ -25,8 +28,9 @@ public class HISS extends JPanel {
   public RunGameDisplay runGameDisplay = new RunGameDisplay();
   public PauseGameDisplay pauseGameDisplay = new PauseGameDisplay();
   public HelpDisplay helpDisplay = new HelpDisplay();
-  //  ==========================================================================
 
+
+  // start of HISS constructor
   public HISS (){
     this.setPreferredSize(new Dimension(Arena.width, Arena.height));
     addMouseListener(new MouseInput());
@@ -34,7 +38,7 @@ public class HISS extends JPanel {
     arena = new Arena();
     Thread mainThread = new Thread(new Runner());
     mainThread.start();
-  }
+  } // end of HISS constructor
 
   public void addNotify() {
       super.addNotify();
@@ -65,6 +69,8 @@ public class HISS extends JPanel {
     frame.setVisible(true);
   }
 
+// start of paintComponent method
+// handles all the graphics of the game depending on the state
   @Override
   public void paintComponent(Graphics g){
     super.paintComponent(g);
@@ -83,8 +89,12 @@ public class HISS extends JPanel {
     if (state == State.gameOver) {
       gameOverDisplay.drawGameOver(g);
     }
-  }
+  } // end of paintComponent
+
 }
+// end of class HISS
+// ===========================================================================
+// ===========================================================================
 
 interface Colorable {
   public void changeColor();

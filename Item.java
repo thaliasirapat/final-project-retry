@@ -4,6 +4,9 @@ import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics;
 
+// ===========================================================================
+// ===========================================================================
+
 //start of class Item
 // defines items and methods for drawing and erasing items
 public class Item {
@@ -38,5 +41,7 @@ public class Item {
 // called when an item is eaten; moves the eaten item to another random position on the screen
   public void eraseItem() {
     this.position = new Pair((double)rand.nextInt(Arena.width - width), (double)rand.nextInt(Arena.height - height));
-  }
-} // end of eraseItem
+  } // end of eraseItem
+
+
+} // end of class Item
