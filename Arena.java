@@ -19,23 +19,23 @@ public class Arena implements Colorable{
   public ArrayList<Item> items;
   public ArrayList<Snake> snakes;
 
-// constructor Arena creates instances of Snake and Item by calling on
+// constructor Arena creates instances of Snake and Item by calling on =========
 // respective create methods
   public Arena() {
     items = createItems();
     snakes = createSnakes();
-  } // end of constructor Arena
+  } // end of constructor Arena ================================================
 
 
-// start of method update
+// start of method update ======================================================
 // calls on updateSnakes to make the snake move and evolve as necessary
   public void update(double time) {
     updateSnakes(time);
     changeColor();
-  } // end of update
+  } // end of update ===========================================================
 
 
-// start of method updateSnakes, takes in a double variable
+// start of method updateSnakes, takes in a double variable ====================
 // Loops through the ArrayList snakes and calls the method update in class Snake
 // to update each snake
   public void updateSnakes(double time) {
@@ -45,9 +45,9 @@ public class Arena implements Colorable{
       s.update(v, time);
       s.changeColor();
     }
-  } // end of updateSnakes
+  } // end of updateSnakes =====================================================
 
-/* start of method changeColor, which overrides the abstract method from the
+/* start of method changeColor, which overrides the abstract method from the====
    interface Colorable. Causes the arena to change color once a certain score is
    reached
 */
@@ -59,10 +59,10 @@ public class Arena implements Colorable{
     if (score > 100) {
       color = Color.ORANGE;
     }
-  } // end of changeColor
+  } // end of changeColor ======================================================
 
 
-// start of method createItems which returns an ArrayList of Items
+// start of method createItems which returns an ArrayList of Items =============
 // Creates 20 instances of items and adds them to an ArrayList
   public ArrayList<Item> createItems() {
     ArrayList<Item> items = new ArrayList<Item>();
@@ -74,18 +74,19 @@ public class Arena implements Colorable{
       items.add(rock);
     }
     return items;
-  } // end of createItems
+  } // end of createItems =====================================================
 
 
-// start of drawItems, takes in Graphics object and draws items to screen
+// start of drawItems, takes in Graphics object and draws items to screen ======
   public void drawItems(Graphics g) {
     for(int i=0; i<items.size(); ++i) {
       items.get(i).drawItem(g);
     }
-  } // end of drawItems
+  } // end of drawItems ========================================================
 
 
-// start of method createSnakes, returns an ArrayList of Snakes
+
+// start of method createSnakes, returns an ArrayList of Snakes ===============
 // creates two instances of Snake (Player 1 and Player 2) and adds them to an
 // ArrayList
   public ArrayList<Snake> createSnakes() {
@@ -95,7 +96,8 @@ public class Arena implements Colorable{
     Snake s2 = new Snake(2, this);
     snakes.add(s2);
     return snakes;
-  } // end of createSnakes
+  } // end of createSnakes ====================================================
+
 
 
 // start of method drawSnakes, takes in Graphic object and draws snakes to screen
@@ -103,13 +105,17 @@ public class Arena implements Colorable{
     for (Snake s: snakes){
       s.drawSnake(g);
     }
-  } // end of drawSnakes
+  } // end of drawSnakes========================================================
+
+
 
 // start of method drawScore, takes in Graphics object and draws current score
   public void drawScore(Graphics g) {
     String scoreString = "Score: " + score;
     g.drawString(scoreString, 850, 15);
-  } // end of drawScore
+  } // end of drawScore =======================================================
+
+
 
 // start of method drawInedibleCount, takes in Graphics object and draws current
 // count of inedible items eaten
@@ -118,7 +124,7 @@ public class Arena implements Colorable{
     g.drawString(s1, 850, 35);
     String s2 = "Snake 2 Rocks Eaten: " + snakes.get(1).inedibleCount;
     g.drawString(s2, 850, 55);
-  } // end of drawInedibleCount
+  } // end of drawInedibleCount ================================================
 
 }
 // end of class Arena

@@ -1,3 +1,12 @@
+/* class Pair is used to hold positions and velocities of Items and Segments
+   Each Pair has an x and a y value which represents the x and y coordinate for
+   position / x and y component for velocity
+
+
+   class Pair has helper methods that help add, times, compare Pairs or determine
+   if a Pair is within a given range
+*/
+
 public class Pair{
   public double x;
   public double y;
@@ -54,7 +63,7 @@ public class Pair{
     return false;
   }
 
-  public String toString(){
-    return "x: " + x + "y: " + y;
-  }
 }
+// end of class Pair
+// ============================================================================
+// ============================================================================

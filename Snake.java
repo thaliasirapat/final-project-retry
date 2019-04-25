@@ -47,7 +47,8 @@ public class Snake implements Colorable {
       Segment s = new Segment(position, velocity);
       body.add(s);
     }
-  } // end of Snake constructor
+  } // end of Snake constructor =================================================
+
 
 
 // start of method drawSnake ==============================================
@@ -77,6 +78,7 @@ public class Snake implements Colorable {
   } // end of move  ============================================================
 
 
+
   // start of method update  =====================================================
   // Calls on method move, and checks if the snake is eating itself, its friend,
   // or running into the wall. If the snake eats an item, it calls on evolve()
@@ -102,6 +104,7 @@ public class Snake implements Colorable {
       HISS.state = State.gameOver;
     }
   } // end of update  ========================================================
+
 
 
 // start of method eatSelf  =====================================================
@@ -133,6 +136,7 @@ public class Snake implements Colorable {
      }
      return false;
    } // end of eatFriend  =====================================================
+
 
 
 // start of method hitWall  =====================================================
@@ -189,6 +193,7 @@ public class Snake implements Colorable {
   } // end of hasEatenItem  ====================================================
 
 
+
 //start of method evolve  =====================================================
 // calls on eatenItem() and increases length of snake and score if edible item is eaten
 // increases inedibleCount when inedible item is eaten
@@ -202,6 +207,7 @@ public class Snake implements Colorable {
       inedibleCount++;
     }
   } // end of evolve  =========================================================
+
 
 
 // The following methods check the direction that the snake is moving in ======
@@ -237,7 +243,7 @@ public class Snake implements Colorable {
     return false;
   }
 
-// end of methods checking direction of snake movement ======================
+// end of methods checking direction of snake movement =========================
 
 // start of method changeColor  ================================================
 // overrides the abstract method from Colorable interface
@@ -253,10 +259,12 @@ public class Snake implements Colorable {
     } // end of changeColor  ===================================================
 
 
+
 } // end of class Snake
 
- //============================================================================
- //============================================================================
+ //=============================================================================
+ //=============================================================================
+
 
 // start of class Segment
 // the body of the snake is an ArrayList of Segments
@@ -272,5 +280,5 @@ class Segment {
   }
 }
 // end of class Segment
-//  ==========================================================================
-// ===============================================================================
+//  ============================================================================
+// =============================================================================
