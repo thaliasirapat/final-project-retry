@@ -1,8 +1,12 @@
+// imports ====================================================================
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Graphics2D;
+
+// ============================================================================
+// ============================================================================
 
 public class MenuDisplay {
   public Rectangle playButton = new Rectangle(420, 300, 200, 100);
