@@ -47,7 +47,7 @@ public class Snake implements Colorable {
       Segment s = new Segment(position, velocity);
       body.add(s);
     }
-  } // end of Snake constructor =================================================
+  } // end of Snake constructor ================================================
 
 
 
