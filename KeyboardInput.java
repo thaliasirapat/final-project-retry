@@ -2,10 +2,17 @@
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-// ===========================================================================
-// ===========================================================================
+// ============================================================================
+// ============================================================================
+
+/* public class KeyboardInput implements KeyListener and handles input from the
+   keyboard
+
+*/
 
 public class KeyboardInput implements KeyListener {
+
+  // start of method keyPressed ===============================================
   @Override
   public void keyPressed(KeyEvent e) {
     char c = e.getKeyChar();
@@ -25,7 +32,7 @@ public class KeyboardInput implements KeyListener {
       }
     }
 
-  }
+  } // end of keyPressed ======================================================
 
   public int getPlayer(char c){
     if ( c == 'w' || c == 's' || c == 'a' || c == 'd'){
