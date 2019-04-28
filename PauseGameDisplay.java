@@ -13,6 +13,7 @@ public class PauseGameDisplay{
 
     g.setColor(Arena.color);
     g.fillRect(0, 0, Arena.width, Arena.height);
+    HISS.arena.drawItems(g);
     Font pauseFont = new Font("arial", Font.BOLD, 50);
     g.setFont(pauseFont);
     g.setColor(Snake.color);
@@ -20,8 +21,8 @@ public class PauseGameDisplay{
 
     Font buttonFont = new Font("arial", Font.BOLD, 20);
     g2d.draw(resumeButton);
-    g.drawString("Resume", resumeButton.x + 10, resumeButton.y + 65);
-    g.drawString("Score: " + Arena.score, 400, 330);
+    g.drawString("Resume", resumeButton.x + 5, resumeButton.y + 65);
+    g.drawString("Score: " + Arena.score, 420, 330);
 
   }
 }

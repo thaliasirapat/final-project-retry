@@ -23,6 +23,7 @@ public class HelpDisplay { //import image search buffered image
 
     g.setColor(Arena.color);
     g.fillRect(0, 0, Arena.width, Arena.height);
+    HISS.arena.drawItems(g);
     Font helpFont = new Font("arial", Font.BOLD, 50);
     g.setFont(helpFont);
     g.setColor(Snake.color);

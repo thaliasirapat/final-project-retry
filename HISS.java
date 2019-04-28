@@ -48,6 +48,9 @@ public class HISS extends JPanel {
   class Runner implements Runnable {
     public void run() {
       while (true) {
+        if (state == State.menu) {
+          menuDisplay.update((double)1/FPS);
+        }
         if (state == State.runGame) {
           arena.update((double)1/FPS);
         }

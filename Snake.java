@@ -200,7 +200,7 @@ public class Snake implements Colorable {
   public void evolve(Item item, Pair velocity){
     if(item.edible){
       arena.score++;
-      Segment s = new Segment(body.get(i).position, velocity);
+      Segment s = new Segment(body.get(0).position, velocity);
       body.add(s);
     }
     else{

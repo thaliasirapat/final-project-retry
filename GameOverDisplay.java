@@ -13,6 +13,7 @@ public class GameOverDisplay {
 
     g.setColor(Arena.color);
     g.fillRect(0, 0, Arena.width, Arena.height);
+    HISS.arena.drawItems(g);
     Font gameOverFont = new Font("monospaced", Font.BOLD, 50);
     g.setFont(gameOverFont);
     g.setColor(Snake.color);
