@@ -1,14 +1,26 @@
+// imports ====================================================================
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 
+// ============================================================================
+// ============================================================================
+
+
+// start of class MouseInput ===================================================
+// handles user input via the trackpad / mouse in the starting and end game
+// screens
+
 public class MouseInput implements MouseListener {
+
+  // start of method mousePressed ==============================================
+  // handles input from the mouse / trackpad
   public void mousePressed(MouseEvent e){
     int mx = e.getX();
     int my = e.getY();
 
     if (HISS.state == State.menu) {
-      //play button
+      // Play button
       if (mx >= 420 && mx <= 620) {
         if (my >= 300 && my <= 400) {
           //Pressed play button
@@ -19,7 +31,7 @@ public class MouseInput implements MouseListener {
           Snake.color = Color.BLACK;
         }
       }
-      //help button
+      // help button
       if (mx >= 420 && mx <= 620) {
         if (my >= 500 && my <= 600) {
           //Pressed help button
@@ -66,9 +78,15 @@ public class MouseInput implements MouseListener {
         }
       }
     }
-  }
+  } // end of mousePressed =====================================================
+
+  // inherited methods =========================================================
   public void mouseClicked(MouseEvent e){}
   public void mouseEntered(MouseEvent e){}
   public void mouseExited(MouseEvent e){}
   public void mouseReleased(MouseEvent e){}
-}
+
+} // end of class MouseInput ===================================================
+
+// =============================================================================
+// =============================================================================

@@ -1,15 +1,24 @@
+// imports ====================================================================
 import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.lang.*;
 
+// ============================================================================
+// ============================================================================
+
+// start of class MenuSnake ====================================================
+// controls behavior of moving snakes on the menu screen
 public class MenuSnake {
+
+  // member variables
   public int player;
   public ArrayList<Segment> body;
   public Segment head;
   public static Color color = Color.BLACK;
   public int velocityComponent = 200;
 
+// constructor for MenuSnake ===================================================
   public MenuSnake(int player) {
     this.player = player;
     Pair position;
@@ -32,8 +41,11 @@ public class MenuSnake {
       Segment s = new Segment(position, velocity);
       body.add(s);
     }
-  }
+  } // end of constructor ======================================================
 
+
+// start of method update ======================================================
+// makes the snake move and change velocity
   public void update(Pair velocity, double time){
     this.move(velocity, time);
     changeVelocity();
@@ -43,8 +55,11 @@ public class MenuSnake {
       this.evolve(item, velocity);
       item.eraseItem();
     }
+  } // end of update ===========================================================
 
-  }
+
+  // start of method eatenItem =================================================
+  // returns an item that is eaten
   public Item eatenItem(){
     for (Item i: HISS.arena.items){
       if(head.position.inRange(i.position, 10)){
@@ -52,14 +67,21 @@ public class MenuSnake {
       }
     }
     return null;
-  }
+  } // end of eatenItem ========================================================
 
+
+// start of method evolve ======================================================
+// makes the snake grow longer once an item is eaten
   public void evolve(Item item, Pair velocity){
     if(item.edible){
       Segment s = new Segment(body.get(0).position, velocity);
       body.add(s);
     }
-  }
+  } // end of evolve ===========================================================
+
+
+// start of method changeVelocity ==============================================
+// makes the snake loop around the buttons on the screen
   public void changeVelocity() {
     if (player==1) {
       if (head.position.equalsTo(new Pair(640, 270))) {
@@ -89,8 +111,11 @@ public class MenuSnake {
         head.velocity = new Pair(0, -velocityComponent);
       }
     }
-  }
+  } // end of changeVelocity ===================================================
 
+
+// start of move ===============================================================
+// makes the snake move around the screen
   public void move(Pair velocity, double time) {
     Pair oldHeadPosition = head.position;
     head.position = head.position.add(velocity.times(time));
@@ -98,12 +123,20 @@ public class MenuSnake {
     body.remove(x);
     body.add(0, new Segment(oldHeadPosition, velocity));
 
-  }
+  } // end of move =============================================================
+
+
+  // start of drawSnake ========================================================
+  // draws snake to screen
   public void drawSnake(Graphics g){
     g.setColor(color);
     g.fillRect((int)head.position.x, (int)head.position.y, head.width, head.height);
     for (Segment s: body){
       g.fillRect((int)s.position.x, (int)s.position.y, s.width, s.height);
      }
-  }
-}
+  } // end of drawSnake ========================================================
+
+} // end of class MenuSnake
+
+// ============================================================================
+// ============================================================================

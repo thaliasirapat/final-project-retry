@@ -1,3 +1,4 @@
+// imports ====================================================================
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -7,10 +8,16 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.File;
 import javax.imageio.ImageIO;
+// =============================================================================
+// =============================================================================
 
-public class HelpDisplay { //import image search buffered image
+// start of class HelpDisplay
+// imports image and searches buffered images
+public class HelpDisplay {
   public Rectangle backButton = new Rectangle(420, 500, 200, 100);
 
+// start of method drawHelp ====================================================
+// draws the help screen
   public void drawHelp(Graphics g) {
     BufferedImage img = null;
     try {
@@ -33,5 +40,9 @@ public class HelpDisplay { //import image search buffered image
     Font buttonFont = new Font("arial", Font.BOLD, 20);
     g2d.draw(backButton);
     g.drawString("Back", backButton.x + 40, backButton.y + 65);
-  }
-}
+  } // end of drawHelp =========================================================
+
+  
+} // end of class hHlpDisplay
+// =============================================================================
+// =============================================================================
