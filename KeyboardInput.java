@@ -22,7 +22,7 @@ public class KeyboardInput implements KeyListener {
       if ( x == 1) {
         snake = HISS.arena.snakes.get(0);
       }
-      else if (x == 2) {
+      else {
         snake = HISS.arena.snakes.get(1);
       }
 
