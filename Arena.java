@@ -19,8 +19,8 @@ public class Arena implements Colorable{
   public ArrayList<Item> items;
   public ArrayList<Snake> snakes;
 
-// constructor Arena creates instances of Snake and Item by calling on =========
-// respective create methods
+//  start of constructor Arena =================================================
+// creates instances of Snake and Item by calling on respective create methods
   public Arena() {
     items = createItems();
     snakes = createSnakes();
@@ -47,7 +47,8 @@ public class Arena implements Colorable{
     }
   } // end of updateSnakes =====================================================
 
-/* start of method changeColor, which overrides the abstract method from the====
+/* start of method changeColor =================================================
+  overrides the abstract method from the
    interface Colorable. Causes the arena to change color once a certain score is
    reached
 */
@@ -62,7 +63,8 @@ public class Arena implements Colorable{
   } // end of changeColor ======================================================
 
 
-// start of method createItems which returns an ArrayList of Items =============
+// start of method createItems =================================================
+// returns an ArrayList of Items
 // Creates 20 instances of items and adds them to an ArrayList
   public ArrayList<Item> createItems() {
     ArrayList<Item> items = new ArrayList<Item>();
@@ -100,7 +102,8 @@ public class Arena implements Colorable{
 
 
 
-// start of method drawSnakes, takes in Graphic object and draws snakes to screen
+// start of method drawSnakes =================================================
+// takes in Graphic object and draws snakes to screen
   public void drawSnakes(Graphics g) {
     for (Snake s: snakes){
       s.drawSnake(g);
@@ -109,7 +112,8 @@ public class Arena implements Colorable{
 
 
 
-// start of method drawScore, takes in Graphics object and draws current score
+// start of method drawScore ==================================================
+// takes in Graphics object and draws current score
   public void drawScore(Graphics g) {
     String scoreString = "Score: " + score;
     g.drawString(scoreString, 850, 15);
@@ -117,8 +121,8 @@ public class Arena implements Colorable{
 
 
 
-// start of method drawInedibleCount, takes in Graphics object and draws current
-// count of inedible items eaten
+// start of method drawInedibleCount ===========================================
+// takes in Graphics object and draws current count of inedible items eaten
   public void drawInedibleCount(Graphics g) {
     String s1 = "Snake 1 Rocks Eaten: " + snakes.get(0).inedibleCount;
     g.drawString(s1, 850, 35);
@@ -126,7 +130,7 @@ public class Arena implements Colorable{
     g.drawString(s2, 850, 55);
   } // end of drawInedibleCount ================================================
 
-}
-// end of class Arena
+} // end of class Arena
+
 // ===========================================================================
 // ===========================================================================

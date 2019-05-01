@@ -30,7 +30,9 @@ public class HISS extends JPanel {
   public HelpDisplay helpDisplay = new HelpDisplay();
 
 
-  // start of HISS constructor
+  // start of HISS constructor =================================================
+  // adds MouseListener and KeyboardListener, creates an instance of arena and
+  // starts the main thread
   public HISS (){
     this.setPreferredSize(new Dimension(Arena.width, Arena.height));
     addMouseListener(new MouseInput());
@@ -38,13 +40,20 @@ public class HISS extends JPanel {
     arena = new Arena();
     Thread mainThread = new Thread(new Runner());
     mainThread.start();
-  } // end of HISS constructor
+  } // end of HISS constructor =================================================
 
+// start of method addNotify ===================================================
+// inherits from the parent method in JFrame
   public void addNotify() {
       super.addNotify();
       requestFocus();
-  }
+  } // end of addNotify ========================================================
 
+
+
+// start of class Runner =======================================================
+// enables multi-threading and runs different versions of the code depending
+// on the state of the game
   class Runner implements Runnable {
     public void run() {
       while (true) {
@@ -62,17 +71,22 @@ public class HISS extends JPanel {
         }
       }
     }
-  }
+  } // end of class Runner =====================================================
 
+
+// start of main method =======================================================
+// Instantiates JFrame
   public static void main(String[] args) {
     JFrame frame = new JFrame("HISS: Two Player Snake!");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setContentPane(new HISS());
     frame.pack();
     frame.setVisible(true);
-  }
+  } // end of main method ======================================================
 
-// start of paintComponent method
+
+
+// start of paintComponent method ==============================================
 // handles all the graphics of the game depending on the state
   @Override
   public void paintComponent(Graphics g){
@@ -92,13 +106,18 @@ public class HISS extends JPanel {
     if (state == State.gameOver) {
       gameOverDisplay.drawGameOver(g);
     }
-  } // end of paintComponent
+  } // end of paintComponent ==================================================
 
 }
 // end of class HISS
 // ===========================================================================
 // ===========================================================================
 
+// start of interface Colorable ================================================
+// contains method header changeColor, applied to both snakes and arena
 interface Colorable {
   public void changeColor();
-}
+}// end of Colorable
+
+// =============================================================================
+// =============================================================================

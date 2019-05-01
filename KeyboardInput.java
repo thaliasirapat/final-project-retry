@@ -36,8 +36,9 @@ public class KeyboardInput implements KeyListener {
   } // end of keyPressed ======================================================
 
 
-// start of method getPlayer, which determines from keyboard input which snake
-// will change direction. Takes in char c and return an int ===================
+// start of method getPlayer =================================================
+// determines from keyboard input which snake will change direction. Takes in
+// char c and return an int
   public int getPlayer(char c){
     if ( c == 'w' || c == 's' || c == 'a' || c == 'd'){
       return 1;
@@ -51,9 +52,14 @@ public class KeyboardInput implements KeyListener {
   }
   // end of getPlayer =========================================================
 
+// empty methods inherited from KeyboardListener ; unneeded for the game
   @Override
   public void keyReleased(KeyEvent e){}
-
   @Override
   public void keyTyped(KeyEvent e){}
-}
+
+
+} // end of class KeyboardInput
+
+// =============================================================================
+// =============================================================================
