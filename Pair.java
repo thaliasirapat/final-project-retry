@@ -16,6 +16,8 @@ public class Pair{
     y = initY;
   }
 
+// the following methods help perform arithmetic operations on Pairs & the names
+// are self-explanatory ========================================================
   public Pair add(Pair toAdd){
     return new Pair(x + toAdd.x, y + toAdd.y);
   }
@@ -28,40 +30,27 @@ public class Pair{
     return new Pair(x * val, y * val);
   }
 
-  public void flipX(){
-    x = -x;
-  }
+// =============================================================================
 
-  public void flipY(){
-    y = -y;
-  }
+// start of method equalsTo ===================================================
+// compares two pairs. if the x and y values are both equal method returns true
   public boolean equalsTo(Pair p) {
     if (p.x == this.x && p.y == this.y){
       return true;
     }
     return false;
-  }
+  } // end of equalsTo ========================================================
 
-  public boolean isPositiveX() {
-    if (this.x > 0) {
-      return true;
-    }
-    return false;
-  }
 
-  public boolean isPositiveY() {
-    if (this.y > 0) {
-      return true;
-    }
-    return false;
-  }
-
+// start of inRange ============================================================
+// takes in a Pair and a range. if the two pairs being compared are within the
+// specified range of each other then method returns true
   public boolean inRange(Pair a, double range){
     if ((this.x >= a.x - range && this.x <= a.x + range) && (this.y >= a.y - range && this.y <= a.y + range)){
       return true;
     }
     return false;
-  }
+  } // end of inRange ==========================================================
 
 }
 // end of class Pair

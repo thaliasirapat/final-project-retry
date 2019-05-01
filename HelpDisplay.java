@@ -24,6 +24,8 @@ public class HelpDisplay {
       img = ImageIO.read(new File("HelpInstructions.png"));
     }
     catch (IOException e) {
+      System.out.println("Unable to find and display help instructions.");
+      System.exit(0);
     }
 
     Graphics2D g2d = (Graphics2D) g;
@@ -42,7 +44,7 @@ public class HelpDisplay {
     g.drawString("Back", backButton.x + 40, backButton.y + 65);
   } // end of drawHelp =========================================================
 
-  
+
 } // end of class hHlpDisplay
 // =============================================================================
 // =============================================================================

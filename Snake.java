@@ -12,7 +12,7 @@ import java.lang.*;
 
 public class Snake implements Colorable {
   public int inedibleCount = 0;
-  public ArrayList<Segment> body;
+  private ArrayList<Segment> body;
   public Segment head;
   public static Color color = Color.BLACK;
   public int player;
@@ -68,7 +68,7 @@ public class Snake implements Colorable {
 // the head moves according to physics, but the rest of the body moves by moving
 // the last segment to replace the old position of the head
 
-  public void move(Pair velocity, double time) {
+  private void move(Pair velocity, double time) {
     Pair oldHeadPosition = head.position;
     head.position = head.position.add(velocity.times(time));
     int x = body.size()-1;

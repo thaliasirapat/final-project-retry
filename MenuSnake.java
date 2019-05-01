@@ -13,7 +13,7 @@ public class MenuSnake {
 
   // member variables
   public int player;
-  public ArrayList<Segment> body;
+  private ArrayList<Segment> body;
   public Segment head;
   public static Color color = Color.BLACK;
   public int velocityComponent = 200;

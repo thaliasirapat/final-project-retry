@@ -38,7 +38,7 @@ public class Arena implements Colorable{
 // start of method updateSnakes, takes in a double variable ====================
 // Loops through the ArrayList snakes and calls the method update in class Snake
 // to update each snake
-  public void updateSnakes(double time) {
+  private void updateSnakes(double time) {
     Pair v;
     for (Snake s: snakes){
       v = s.head.velocity;
